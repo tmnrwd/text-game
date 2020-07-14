@@ -166,7 +166,7 @@ function pressStart() {
     currentRoom = Pantry;
     currentChar = Dragon;
     displayRoomInfo(currentRoom);
-    displayCharInfo(currentRoom);
+    displayCharInfo(currentChar);
     beginGame();
 }
 
@@ -180,6 +180,7 @@ function beginGame() {
             if (directions.includes(command)) {
                 currentRoom = currentRoom.move(command)
                 displayRoomInfo(currentRoom);
+                updateChar(currentRoom);
                 displayCharInfo(currentChar);
             }
         }
@@ -192,8 +193,7 @@ function displayRoomInfo(currentRoom) {
     document.getElementById("room-description").innerHTML = textContent;
 }
 
-function displayCharInfo(currentRoom) {
-    currentChar = currentRoom.getChar();
+function displayCharInfo(currentChar) {
     textContent = currentChar.describeChar();
     document.getElementById("char-description").innerHTML = textContent;
 }
@@ -220,20 +220,23 @@ function navErrorHide() {
     document.getElementById("navigation-errors").style.display = "none"
 }
 
-//current testing function
+//troubleshooting
+//updateChar(currentRoom) updates currentChar to the character in the room. The correct character for Pantry is Dragon
+//displayCharInfo displays description of currentChar
+//Each of these works independently, but having both of them present gives a TypeError: currentChar.describeChar is not a function
 
-function ex(currentRoom) {
-    currentChar = currentRoom.getChar();
-    console.log(currentChar)
+//version of displayCharInfo that outputs to console rather than document (document ref currently crashing nodemon)
+function displayCharInfo(currentChar) {
+    textContent = currentChar.describeChar();
+    console.log(textContent);
 }
-
-function ex2(currentChar) {
-    return currentChar.describeChar();
+//copy of updateChar for convenience
+function updateChar(room) {
+    currentChar = room.getChar();
+    console.log("This room's character is:", currentChar)
 }
-
 
 currentRoom = Pantry;
-currentChar = Dragon;
-//ex(currentRoom)
-displayCharInfo(currentRoom)
-console.log(ex2(currentChar))
+currentChar = Lady;
+updateChar(currentRoom) //should change currentChar to Dragon
+displayCharInfo(currentChar) //should display currentChar description
