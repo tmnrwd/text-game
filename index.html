@@ -2,94 +2,159 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width='device-width', initial-scale=1.0">
+    <!-- required meta tags for bootstrap-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- required CSS link for bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <title>THE SLIGHTLY OMINOUS CASTLE OF TOSKA SORANN</title>
-    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
-    <div id="whole-game">
-        <div id="game-title">
-            THE SLIGHTLY OMINOUS CASTLE OF TOSKA SORANN
-        </div>
-        <div id="welcome">
-            Welcome to THE SLIGHTLY OMINOUS CASTLE OF TOSKA SORANN.
-            You find yourself in THE SLIGHTLY OMINOUS CASTLE OF TOSKA SORANN.
-            You play this game by entering text into the boxes below.
-            Explore, meet people, and find your ultimate goal: salvation.
-        </div>
-<div id="displayed-while-alive">
-        <div id="exit-text" class="hidden">
-            Exit text goes here
-        </div>
-
-        <div id="room-description">
-            <button type="button" onclick="pressStart()">
-                Click to begin game</button>
-        </div>
-        <div id="char-description">
-            Character description goes here
-        </div>
-
-        <button type="button" onclick="pickupItem(food)">
-            Click to pick up food</button>
-        <div id="inventory-container">
-            INVENTORY<br>You have these items: <br>
-            <div id="inventory">
+    <div class="container-fluid">
+        <div id="whole-game">
+            <div id="game-title" class="d-flex justify-content-center">
+                <h1>THE SLIGHTLY OMINOUS CASTLE OF TOSKA SORANN</h1>
+            </div>
+            <br>
+            <div id="welcome" class="d-flex justify-content-center">
+                You find yourself in THE SLIGHTLY OMINOUS CASTLE OF TOSKA SORANN.<br>
+                To move around the castle, enter cardinal directions in the navigation box.
+                To use items, click on the button for that item.<br>
+                Your aim? Explore, meet people, and find your ultimate goal: salvation.<br>
+            </div>
+            <hr style="border: 1px solid grey;" />
+            <br>
+            <div id="start-button" class="justify-content-center">
+                <button type="button" onclick="pressStart()">
+                    Click to begin game</button>
             </div>
 
-        </div>
+            <div id="exit-room-char-text">
 
-        <div id="navigator">
-            NAVIGATION
-            <input type="text" id="navigation">
-            <div id="navigation-errors" class="hidden">
-                You can't go that way.
+                <div id="exit-text-container" class="interface-segment-med">
+                    <div id="exit-text" class="hidden">
+                        Exit text goes here
+                    </div>
+                </div>
+                <hr style="border: 1px solid grey;" />
+
+                <div id="room-description-container" class="interface-segment-large">
+                    <div id="room-description">
+                    </div>
+                </div>
+                <div id="char-description-container" class="interface-segment-large">
+                    <div id="char-description">
+                    </div>
+                </div>
             </div>
-        </div>
+            <div id="win-lose-text-container" class="interface-segment-xlarge">
+                <div id="win-lose-text" class="hidden win-lose-class">
+                </div>
 
-        <div id="character-interaction">
-            CHARACTER INTERACTION
-            <input type="text">
-        </div>
-
-        <div id="item-use">
-            ITEM USE
-            <div id="food-button" class="hidden">
-                <button type="button" onclick="feed(currentChar)">Use Food</button>
-                <!--<button type="button" onclick="rightItemTextDelete()">Remove reward text</button>-->
             </div>
-            <div id="attention-button" class="hidden">
-                <button type="button" onclick="attn(currentChar)">Give Attention</button>
-            </div>
-            <div id="blessing-button" class="hidden">
-                <button type="button" onclick="blessing(currentChar)">Use Wyrm's Blessing</button>
-            </div>
-            <div id="compassion-button" class="hidden">
-                <button type="button" onclick="compassion(currentChar)">Use Compassion</button>
-            </div>
-        </div>
 
-        <div id="right-item-text" class="hidden">
+            <div id="start-again-container" class="interface-segment-small">
+                <h4 id="start-again" class="hidden">
+                    Unfortunately, your game is over. But you can always try again.
+                </h4>
+            </div>
 
-        </div>
+            <div id="salvation-text" class="hidden salvation-class">
+                <div>You have attained salvation.</div>
+            </div>
 
-        <div id="wrong-item-text" class="hidden">
-            That item doesn't seem to have any effect.
+            <div id="items-nav-buttons">
+                <!--
+            <button type="button" onclick="pickupItem(food)">
+                Click to pick up food</button>
+            -->
+                <br>
+                <hr style="border: 1px solid grey;" />
+                <div id="inventory-container" class="interface-segment-large">
+                    INVENTORY<br>You have these items: <br>
+                    <div id="inventory">
+                    </div>
+
+                </div>
+                <br>
+                <div id="navigator" class="interface-segment-med">
+                    NAVIGATION: enter a cardinal direction and press enter.<br>
+                    <input type="text" id="navigation">
+                    <div id="navigation-errors" class="hidden">
+                        You can't go that way.
+                    </div>
+                </div>
+                <hr style="border: 1px solid grey;" />
+
+                <div id="right-item-text-container" class="interface-segment-med">
+                    <div id="right-item-text" class="hidden">
+
+                    </div>
+                </div>
+
+                <div id="wrong-item-text-container" class="interface-segment-small">
+                    <div id="wrong-item-text" class="hidden">
+                        That item doesn't seem to have any effect.
+                    </div>
+                </div>
+                ITEMS: click the button to use the item.
+                <div id="item-use" class="row interface-segment">
+                    <div id="food-button-container" class="col">
+                        <div id="food-button" class="hidden">
+                            <button type="button" onclick="feed(currentChar)">Use Food</button>
+                            <!--<button type="button" onclick="rightItemTextDelete()">Remove reward text</button>-->
+                        </div>
+                    </div>
+                    <div id="attention-button-container" class="col">
+                        <div id="attention-button" class="hidden">
+                            <button type="button" onclick="attn(currentChar)">Give Attention</button>
+                        </div>
+                    </div>
+                    <div id="blessing-button-container" class="col">
+                        <div id="blessing-button" class="hidden">
+                            <button type="button" onclick="blessing(currentChar)">Use Wyrm's Blessing</button>
+                        </div>
+                    </div>
+                    <div id="compassion-button-container" class="col">
+                        <div id="compassion-button" class="hidden">
+                            <button type="button" onclick="comp(currentChar)">Share Compassion</button>
+                        </div>
+                    </div>
+                    <div id="pick-up-compassion-button-container" class="col interface-segment">
+                        <div id="pick-up-compassion-button" class="hidden">
+                            <button type="button" onclick="pickupItem(compassion)">
+                                Obtain compassion</button>
+                        </div>
+                    </div>
+                    <div id="attain-salvation-button-container" class="col interface-segment">
+                        <div id="attain-salvation-button" class="hidden">
+                            <button type="button" onclick="pickupItem(salvation)">
+                                Attain salvation</button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+            <!-- below here, use different class from interface-segment-->
+
         </div>
     </div>
-        <div id="lose-text" class="hidden">
-
-        </div>
-
-        <div id="start-again" class="hidden">
-            Unfortunately, your game is over. But you can always try again.
-        </div>
-
-    </div>
-
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
     <script src="index.js"></script>
 </body>
 

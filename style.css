@@ -1,3 +1,52 @@
+body{
+    background-color: black;
+    color: floralwhite;
+}
+
+
 .hidden{
     display: none;
+}
+
+#exit-room-char-text{
+    display: none
+}
+
+#items-nav-buttons{
+    display: none
+}
+
+.interface-segment{
+    height: auto;
+    width: 1000px;
+}
+
+.interface-segment-small{
+    height: 20px;
+    width: 1000px;
+}
+
+.interface-segment-med{
+    height: 60px;
+    width: 1000px;
+}
+
+.interface-segment-large{
+    height: 80px;
+    width: 1000px;
+}
+
+.interface-segment-xlarge{
+    height: 100px;
+    width: 1000px;
+}
+
+.win-lose-class{
+    font-size: large;
+    font-weight: bold;
+}
+
+.salvation-class{
+    font-size: large;
+    font-weight: bold;
 }
