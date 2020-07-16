@@ -218,11 +218,11 @@ const Dragon = new Character("Dragon", "Baby Dragon",
     "In the corner you can see a baby dragon, sleeping happily on a coat hanger attached to a mannequin, <br>which is T-posing and wearing a fedora.",
     "You feed the dragon. It coos happily and falls asleep on its coat hanger.")
 const Cook = new Character("Cook", "Daisy",
-    "The cook, a silver automaton named Daisy, is kneading a chunk of dough which looks and smells fresh. Daisy doesn't seem to notice your presence.",
+    "The cook, a silver automaton named Daisy, is kneading a chunk of dough which looks and smells fresh. <br>Daisy doesn't seem to notice your presence.",
     "Kitchen",
     false,
     "The cook, a silver automaton named Daisy, is kneading a slightly diminished chunk of dough which looks and smells fresh. Daisy radiates an aura of validation.",
-    "You focus on Daisy for a few long minutes. You see no visible change, but Daisy's silver form begins to fill you with warmth. You find that you have an unexplained piece of dough.")
+    "You focus on Daisy for a few long minutes. You see no visible change, but Daisy's silver form begins to fill you with warmth. <br>You find that you have an unexplained piece of dough.")
 const Amphiptere = new Threat("Amphiptere", "Amphiptere",
     "The shadow in the sky circles overhead. It seems to be watching you.",
     "Amphitheatre",
@@ -241,10 +241,10 @@ const Lady = new Threat("Lady", "The Lady",
 //adding rooms
 const Kitchen = new Room("Crepuscular Kitchen", "First constructed just after the sky fell down, the kitchen has an extremely well-reinforced ceiling.")
 const Garden = new Room("Rooftop Garden", "Sadly, the rooftop garden did not survive what happened fifty years ago. The stonework was reduced to rubble, the plants were transformed into a fine grey mist, and even the soil became a light salmon-pink slurry. Today, it serves only to house the Lady\'s expansive collection of dead butterflies reanimated through ingenious clockwork mechanisms.")
-const Heaven = new Room("Heaven of the Damned", "A desolate hillside, covered in leafless trees. You can just about see the castle in the distance. Being here means you can attain salvation.")
+const Heaven = new Room("Heaven of the Damned", "It is a desolate hillside, covered in leafless trees. You can just about see the castle in the distance. <br>Being here means you can attain salvation.")
 const Amphitheatre = new Room("Amphitheatre", "A huge arena gone to seed. Because of its location on the outskirts of the safe zone, its stonework has suffered in the acid rain, and most of its seats and balustrades have simply fallen apart under their own weight. As you stand there staring, a huge, winged shadow passes overhead.")
 const Pantry = new Room("Pantry", "Located deep within the castle walls, the pantry is a small, dark room that smells inexplicably of fresh juniper berries. <br> A map on the wall indicates that you might head north.")
-const Secret = new Room("Secret Room", "Underneath and to south of the pantry, the secret room contains a huge amount of compassion. Why it remains here to this day, unspoilt and unused, is anybody's guess.")
+const Secret = new Room("Secret Room", "Underneath and to south of the pantry, the secret room contains a huge amount of compassion. <br>Why it remains here to this day, unspoilt and unused, is anybody's guess.")
 //adding items
 const food = new Item("Food", "A scrap of food. It might be suitable for some small creature.", false)
 const WyrmsBlessing = new Item("Wyrm's Blessing", "A blessing received from an infant wyrm.", false)
@@ -264,12 +264,12 @@ Amphitheatre.linkRoom("south", Kitchen)
 Garden.linkRoom("south", Amphitheatre)
 Garden.linkRoom("north", Heaven)
 //text displayed for moving in each direction from each room
-Secret.exitText("north", "You leave behind the pile of compassion and head back out of the secret passage.")
-Pantry.exitText("north", "You open the pantry's creaky door and make your rampant way through several thousand miles of stony corridor.")
+Secret.exitText("north", "You leave behind the pile of compassion and head sternly out of the secret passage.")
+Pantry.exitText("north", "You open the pantry's creaky door and make your resolute way through several thousand miles of stony corridor.")
 Pantry.exitText("south", "You lift a torch from its sconce, remove a specific book from a bookcase, and pull on a particular candlestick. After drumming your fingers while a secret passage grinds into view, you make your way onwards.")
-Kitchen.exitText("north", "From the kitchen window you can see, far, far below you, some sort of stone structure. You take the rickety old lift down, biding your time.")
+Kitchen.exitText("north", "From the kitchen window you can see - far, far below you - a distant stone structure. You take the rickety old lift down, biding your time.")
 Kitchen.exitText("south", "Heading back towards the pantry, you barely notice time passing as you travel the requisite thousands of miles of stony corridor.")
-Amphitheatre.exitText("north", "The amphiptere lands in front of you, picks you up in its beak and places you on its back. The amphiptere takes off in a great cloud of smoke and sound. Its wings beat rhythmically as it soars jerkily through the air, until it deposits you gently on top of a lone tower.")
+Amphitheatre.exitText("north", "The amphiptere lands in front of you, picks you up in its beak and places you on its back. It takes off in a great cloud of smoke and sound. Its wings beat rhythmically as it soars jerkily through the air, until it deposits you gently on top of a lone tower.")
 Amphitheatre.exitText("south", "Turning your back on the desolate, foggy sight of the amphitheatre, you take the rickety old lift back to the kitchen.")
 Garden.exitText("south", "Your steed awaits. The amphiptere glides gently towards the ground, and places you gently in the amphitheatre where it makes its home.")
 Garden.exitText("north", "As you move compassionately towards the Lady, you feel a great weight pressing down on your body. After a moment it eases, then lifts. Close to, she wears a mischievous smile. She holds out a hand, and a shimmering doorway appears in the air. You pass tremulously through.")
@@ -316,6 +316,18 @@ function beginGame() {
     document.getElementById("navigation").addEventListener("keydown", function (event) {
         if (event.key === "Enter") {
             let command = document.getElementById("navigation").value.toLowerCase();
+            if (command == "n"){
+                command = "north";
+            }
+            if (command == "e"){
+                command = "east";
+            }
+            if (command == "w"){
+                command = "west";
+            }
+            if (command == "s"){
+                command = "south";
+            }
             const directions = ["north", "south", "east", "west"]
             if (directions.includes(command)) {
                 if (currentChar == Amphiptere && currentChar.needMetChar() == false && command == "north") {
@@ -469,7 +481,7 @@ function displayExitText(command) {
         document.getElementById("exit-text").style.display = "block";
         textContent = exitTextList[command];
         document.getElementById("exit-text").innerHTML = textContent;
-        setTimeout(exitTextHide, 5000);
+        setTimeout(exitTextHide, 7000);
         setTimeout(showRoomCharDesc, 3000);
     }
 }
@@ -486,7 +498,7 @@ function showRoomCharDesc() {
 
 function winGameText(currentRoom) {
     if (currentRoom == Heaven && salvation._collected == true) {
-        setTimeout(displaySalvationText,5000);
+        setTimeout(displaySalvationText, 3000);
     }
 }
 
@@ -558,6 +570,10 @@ function displayItemButtons() {
 
     if (currentRoom == Secret && compassion.itemCollected() == false) {
         document.getElementById("pick-up-compassion-button").style.display = "block";
+    }
+
+    if (currentRoom !== Secret){
+        document.getElementById("pick-up-compassion-button").style.display = "none";
     }
 
     if (salvation.itemCollected()) {
