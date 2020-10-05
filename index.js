@@ -390,12 +390,7 @@ function pickupItem(item) {
     displayItemButtons();
     winGameText(currentRoom);
 }
-/*
-function dropItem(item) {
-    dropItemvariable = item;
-    delete inventory.dropItemvariable;
-}
-*/
+
 function setNeedMet(currentChar) {
     currentChar.needMet = true;
 }
@@ -481,7 +476,7 @@ function displayExitText(command) {
         document.getElementById("exit-text").style.display = "block";
         textContent = exitTextList[command];
         document.getElementById("exit-text").innerHTML = textContent;
-        setTimeout(exitTextHide, 7000);
+        setTimeout(exitTextHide, 3000);
         setTimeout(showRoomCharDesc, 3000);
     }
 }
@@ -529,7 +524,7 @@ function displayStartAgain() {
     document.getElementById("start-again").style.display = "block";
 }
 
-function displayInventory() {
+function displayInventory2() {
     inventory = {};
     if (food.itemCollected()) {
         inventory[food.itemName()] = food.itemDescr();
@@ -546,9 +541,41 @@ function displayInventory() {
     if (salvation.itemCollected()) {
         inventory[salvation.itemName()] = salvation.itemDescr();
     }
+    let array = Object.entries(inventory);
     document.getElementById("inventory").textContent = "";
-    document.getElementById("inventory").textContent = JSON.stringify(inventory);
+    document.getElementById("inventory").textContent = array;
 }
+
+
+function displayInventory() {
+    if (food.itemCollected()) {       
+        document.getElementById("food-name").textContent = food.itemName();
+        document.getElementById("food-descr").textContent = food.itemDescr();
+    } else {document.getElementById("food-name").textContent = "";
+    document.getElementById("food-descr").textContent = "";}
+    if (attention.itemCollected()) {
+        document.getElementById("attention-name").textContent = attention.itemName();
+        document.getElementById("attention-descr").textContent = attention.itemDescr();
+    } else {document.getElementById("attention-name").textContent = "";
+    document.getElementById("attention-descr").textContent = ""; }
+    if (WyrmsBlessing.itemCollected()) {
+        document.getElementById("blessing-name").textContent = WyrmsBlessing.itemName();
+        document.getElementById("blessing-descr").textContent = WyrmsBlessing.itemDescr();
+    } else {document.getElementById("blessing-name").textContent = "";
+    document.getElementById("blessing-descr").textContent = "";}
+    if (compassion.itemCollected()) {
+        document.getElementById("compassion-name").textContent = compassion.itemName();
+        document.getElementById("compassion-descr").textContent = compassion.itemDescr();
+    } else {document.getElementById("compassion-name").textContent = "";
+    document.getElementById("compassion-descr").textContent = "";}
+    if (salvation.itemCollected()) {
+        document.getElementById("salvation-name").textContent = salvation.itemName();
+        document.getElementById("salvation-descr").textContent = salvation.itemDescr();
+    } else {document.getElementById("salvation-name").textContent = "";
+    document.getElementById("salvation-descr").textContent = "";}
+}
+
+//displayInventory2();
 
 function displayItemButtons() {
     if (food.itemCollected()) {
